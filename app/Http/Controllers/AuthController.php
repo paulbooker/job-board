@@ -21,17 +21,17 @@ class AuthController extends Controller
      */
     public function store(Request $request)
     {
-	    //NOT WORKING!!
-	    //$request->validate([
-		//	'email' => 'required|email',   
-		//	'password' => 'required'
-        //]); 
-  
-        //$credentials = $request->only('email', 'password'); 
-        //$remember = $request->filled('remember');  
+	    //HERE
+	    $request->validate([
+			'email' => 'required|email',   
+			'password' => 'required'
+        ]); 
+		//NOT HERE
+        $credentials = $request->only('email', 'password'); 
+        $remember = $request->filled('remember');  
         
-        $credentials = ['email' => 'paul@paulbooker.co.uk', 'password' => 'password'];
-        $remember = true;
+        //$credentials = ['email' => 'paul@paulbooker.co.uk', 'password' => 'password'];
+        //$remember = true;
         
         if (Auth::attempt($credentials, $remember)) { 
 	    	return redirect()->intended('/');
